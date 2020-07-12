@@ -71,7 +71,7 @@ module.exports = {
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
     filename: 'static/js/[name].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    chunkFilename: 'static/js/[name].js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -172,9 +172,11 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
+          
           {
             test: /\.css$/,
-            use: [{loader: MiniCssExtractPlugin.loader},'css-loader']
+            use: [{loader: MiniCssExtractPlugin.loader, },'css-loader'],
+            
             // loader: ExtractTextPlugin.extract(
             //   Object.assign(
             //     {
@@ -186,7 +188,7 @@ module.exports = {
             //       },
             //       use: [
             //         {
-            //           loader: require.resolve('css-loader'),
+                      // loader: require.resolve('css-loader'),
             //           options: {
             //             importLoaders: 1,
             //             minimize: true,
@@ -194,7 +196,7 @@ module.exports = {
             //           },
             //         },
             //         {
-            //           loader: require.resolve('postcss-loader'),
+                      // loader: require.resolve('postcss-loader'),
             //           options: {
             //             // Necessary for external CSS imports to work
             //             // https://github.com/facebookincubator/create-react-app/issues/2677

@@ -1,0 +1,26 @@
+.header {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color:#021135;
+    height: auto;
+}
+
+.size {
+    margin-left: 15px;
+    -webkit-appearance: none;
+    height: 30px;
+    width: 200px;
+    border: soild 2px #e0dfdf;
+    color: #e0dfdf;
+    border-radius: 3px;
+
+}
+
+option {
+    align-self: center;
+    size: 10px;
+}
+
