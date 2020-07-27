@@ -1,6 +1,7 @@
 body {
   display: flex;
   width: 100%;
+  height: auto;
   margin: 0px;
   font-family: 'IBM Plex Sans', sans-serif;
   background: #f8f8f8;

@@ -15,3 +15,13 @@
 .my-extension h1{
     color: #000;
 }
+
+.frame-root {
+    display: flex;
+    width: 100%;
+}
+
+.frame-content {
+    display: flex;
+    width: 100%;
+}

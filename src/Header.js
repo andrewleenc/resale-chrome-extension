@@ -1,13 +1,15 @@
 import React from 'react';
-import Select from 'react-select'
 import './Header.css'
+import { Dropdown, Button } from 'semantic-ui-react'
+
 
 function Header(props) {
+
     const options = []
 
     for(var i = 0; i < props.items.length; i++) {
         var obj = props.items[i];
-        options.push({ value: obj.size , label: obj.size })
+        options.push({ key: i , text: obj.size, value: obj.size })
     }
 
     const filteredOptions = options.reduce((acc, current) => {
@@ -18,22 +20,10 @@ function Header(props) {
           return acc;
         }
       }, []);
-
-        const customStyles = {
-            control: styles => ({ ...styles, border: 'none', margin: '10px 10px'})
-        }
-
   
         return (
             <div className="header">
-                 <Select
-                  isClearable
-                  options={filteredOptions}
-                  placeholder="Select a size!"
-                  styles={customStyles}
-                  onChange={props.onChange}
-                  value={props.value}
-                  />
+                  <Dropdown clearable placeholder='Select Your Size!' options={filteredOptions} onChange={props.onChange} selection />
             </div>
         
         );

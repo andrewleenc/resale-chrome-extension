@@ -9,10 +9,12 @@
 
 .card-container {
     display: flex;
+    align-self: flex-start;
     width: 100%;
     justify-content: center;
     flex-direction: column;
     margin: 61px 10px 10px 10px;
+    background:  #f8f8f8;
 }
 
 .card {
@@ -70,17 +72,17 @@
 
 }
 
-h1{
-    font-size: 14px;
-    font-weight: 600;
-    color:#021135;
-    margin: 0px;
-}
-
 p{
     display: flex;
     font-size: 12px;
     font-weight: 300;
+    margin: 0px;
+}
+
+#title {
+    font-size: 14px;
+    font-weight: 600;
+    color:#021135;
     margin: 0px;
 }
 

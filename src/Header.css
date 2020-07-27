@@ -1,11 +1,12 @@
 .header {
     position: fixed;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     width: 100%;
     background-color:#021135;
-    height: auto;
+    height: 60px;
+    padding: 10px;
 }
 
 .size {

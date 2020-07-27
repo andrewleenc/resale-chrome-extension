@@ -3,6 +3,11 @@ import Loader from 'react-loader-spinner'
 import './Cards.css'
 
 function Cards(props) {
+        const observer = new MutationObserver(props.onKeywordChange)
+        const keyword = document.getElementsByClassName(' _6YOLH _1JtW7 _2VF_A _2OMMP')[0]
+        observer.observe(keyword, {
+            childList: true
+        })
 
         const items = props.filteredSize
         const isLoaded = props.loaded
@@ -26,13 +31,13 @@ function Cards(props) {
             return title
         }
 
-
         if (!isLoaded)
         return(
             <div className="loaderContainer">
             <Loader type="ThreeDots" color="#021135" height={50} width={50}/>
             </div>
         );
+      
         return (
             <div className="card-container">
             <div>Results for: {props.search}</div>
@@ -41,7 +46,7 @@ function Cards(props) {
                 <div className={"color" + color(item.cosine_val)}></div>
                 <img className="prod_image" alt="Nothing found :(" src={item.image}></img>
                 <div className="prod_info">
-                    <div className="row"><h1>{titleLeng(item.title)}</h1></div>
+                    <div className="row"><h1 id="title">{titleLeng(item.title)}</h1></div>
                     <div className="row"><p>{item.category}</p></div>
                     <div className="row"><p>Size: {" " + item.size}</p></div>
                     <div className="row">

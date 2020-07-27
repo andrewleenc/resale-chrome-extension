@@ -10,23 +10,31 @@ class App extends Component {
 
       super(props);
       this.handleChange =  this.handleChange.bind(this)
+      this.handleKeywordChange = this.handleKeywordChange.bind(this)
       this.state = {
           items: [],
           isLoaded: false,
-          selectedOption: null,
+          selectedOption: "",
           keyword: "patagonia nano puff"
       }
   }
 
 
-  handleChange(event) {
-    this.setState({selectedOption: event })
+  handleChange(event, data) {
+    this.setState({selectedOption: data.value })
   }
 
+  handleKeywordChange(mutations) {
+    console.log(mutations)
+    this.setState({keyword: mutations[0].target.innerText})
+    console.log(this.state.keyword)
+  };
+
   componentDidMount() {
-      fetch('http://testtwo-env.eba-mvhukwi9.us-east-1.elasticbeanstalk.com/' + this.state.keyword)
+      fetch('https://shellz-poshmark-api-aoeje.run-us-west2.goorm.io/' + this.state.keyword)
           .then(res => res.json())
           .then(json => {
+              console.log(json)
               this.setState({
                   items: json,
                   isLoaded: true, 
@@ -37,21 +45,38 @@ class App extends Component {
   }
 
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.keyword !== this.state.keyword) {
+      this.setState({isLoaded: false})
+      console.log("updating results")
+      fetch('https://shellz-poshmark-api-aoeje.run-us-west2.goorm.io/' + this.state.keyword)
+          .then(res => res.json())
+          .then(json => {
+              this.setState({
+                  items: json,
+                  isLoaded: true, 
+              })
+          }).catch((err) => {
+              console.log(err);
+          });
+    }
+  }
+
+
   render () {
-    var filteredSize = (this.state.selectedOption === null) ? this.state.items : this.state.items.filter((item) => {
-      return item.size.toLowerCase() === this.state.selectedOption.value.toLowerCase()
+    var filteredSize = (this.state.selectedOption === "") ? this.state.items : this.state.items.filter((item) => {
+      return item.size.toLowerCase() === this.state.selectedOption.toLowerCase()
     })
     
     return (
         <div className="App">
+            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
             <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;600&display=swap" rel="stylesheet"></link>
             <Header items={this.state.items} value={this.state.selectedOption} onChange={this.handleChange}/>
-            <Cards search={this.state.keyword} loaded={this.state.isLoaded} filteredSize={filteredSize}/>
+            <Cards onKeywordChange={this.handleKeywordChange} search={this.state.keyword} loaded={this.state.isLoaded} filteredSize={filteredSize}/>
         </div>
       )
   };
 }
 
 export default App;
-
-//Hacking the mainframe
