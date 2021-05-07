@@ -39,7 +39,7 @@
     "resolve": "1.6.0",
     "semantic-ui-react": "^0.88.2",
     "sw-precache-webpack-plugin": "^0.11.5",
-    "underscore": "^1.10.2",
+    "underscore": "^1.12.1",
     "url-loader": "0.6.2",
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "2.0.4",
